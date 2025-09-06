@@ -418,7 +418,7 @@ function setGNID {
 		INGN="${INGN:0:MIDNUMSIZE}"
 	fi
 
-	while [[ "${#INGN}" -lt "$MIDNUMSIZE" ]; do
+	while [[ "${#INGN}" -lt "$MIDNUMSIZE" ]]; do
 		INGN="${INGN}A"
 	done
 
@@ -439,7 +439,7 @@ function setGNID {
 
 	function outNum {
 		i=0
-		while [[ "$i" -lt "${#1}" ]; do
+		while [[ "$i" -lt "${#1}" ]]; do
 			numberOut "${1:$i:1}"
 			i=$((i+1))
 		done
@@ -2366,7 +2366,7 @@ function setGameVars {
 	fi
 	THISREAP="${REAPCMD[*]}"
 	THISREAP="${THISREAP% SteamLaunch*}"
-	if [[ -z "$LASTREAP" ]] || { [[ -n "$LASTREAP" ]] && [[ "$LASTREAP" != "$THISREAP" ];}; then
+	if [[ -z "$LASTREAP" ]] || { [[ -n "$LASTREAP" ]] && [[ "$LASTREAP" != "$THISREAP" ]]; }; then
 		updateConfigEntry "LASTREAP" "$THISREAP" "$STLDEFGLOBALCFG"
 	fi
 
@@ -2389,7 +2389,7 @@ function setGameVars {
 		done <<< "$(printf "%s\n" "${WIPAGCMD[@]}")"
 	fi
 
-	if [[ -z "$LASTSLR" ]] || { [[ -n "$LASTSLR" ]] && [[ "$LASTSLR" != "${RUNSLR[*]}" ];}; then
+	if [[ -z "$LASTSLR" ]] || { [[ -n "$LASTSLR" ]] && [[ "$LASTSLR" != "${RUNSLR[*]}" ]]; }; then
 		updateConfigEntry "LASTSLR" "${RUNSLR[*]}" "$STLDEFGLOBALCFG"
 	fi
 
@@ -2959,7 +2959,7 @@ function getAvailableProtonVersions {
 				find "$CUSTPROTEXTDIR" -type f -name "proton" >> "$CUSTOMPROTONLIST"
 			fi
 
-			if [[ ! -f "$PROTONCSV" ]] || { [[ -n "$1" ]] && [[ "$1" = "up" ]; } || [[ "$1" == "F" ]]; then
+			if [[ ! -f "$PROTONCSV" ]] || { [[ -n "$1" ]] && [[ "$1" = "up" ]]; } || [[ "$1" == "F" ]]; then
 				writelog "INFO" "${FUNCNAME[0]} - Initially creating an array with available Proton versions"
 
 				# following symlinks (find -L) and using maxdepth 2 to avoid duplicates caused by _(user created)_ symlinks
@@ -4230,7 +4230,7 @@ function notiShow {
 			fi
 		fi
 
-		if [[ -n "$USENOTIFIER" ]] && [[ "$USENOTIFIER" -eq 1 ]] && { [[ -z "$2" ]] || { [[ -n "$2" ]] && [[ "$2" != "S" ]; };} || { [[ -n "$2" ]] && [[ "$2" == "X" ]; }; then
+		if [[ -n "$USENOTIFIER" ]] && [[ "$USENOTIFIER" -eq 1 ]] && { [[ -z "$2" ]] || { [[ -n "$2" ]] && [[ "$2" != "S" ]]; };} || { [[ -n "$2" ]] && [[ "$2" == "X" ]]; }; then
 			if [[ -x "$(command -v "$NOTY")" ]]; then
 				if [[ -z "${NOTYARGSARR[0]}" ]]; then
 					mapfile -d " " -t -O "${#NOTYARGSARR[@]}" NOTYARGSARR < <(printf '%s' "$NOTYARGS")
@@ -7753,7 +7753,7 @@ function waitForGamePid {
 		writelog "WAIT" "${FUNCNAME[0]} - Waiting for custom process CUSTOMCMD '$CUSTOMCMD'"
 	fi
 
-	while [[ -z "$(GAMEPID)" ]; do
+	while [[ -z "$(GAMEPID)" ]]; do
 		writelog "WAIT" "${FUNCNAME[0]} - Waiting for game process $(GAMEPID)"
 		sleep 1
 	done
@@ -7800,7 +7800,7 @@ function getGameWindowPID {
 
 	touch "$PIDLOCK"
 
-	while [[ "$COUNTER" -lt "$MAXWAIT" ]; do
+	while [[ "$COUNTER" -lt "$MAXWAIT" ]]; do
 		if [[ -f "$CLOSETMP" ]]; then
 			writelog "WAIT" "${FUNCNAME[0]} - ${PROGNAME,,} is just closing - leaving loop"
 			WASCLOSED=1
@@ -8506,7 +8506,7 @@ function getGameWindowName {
 				writelog "WAIT" "${FUNCNAME[0]} - Waiting for the pfx '$GPFX' to be full created"
 			fi
 
-			while [[ ! -f "$SYSREG" ]; do
+			while [[ ! -f "$SYSREG" ]]; do
 				if [[ -f "$CLOSETMP" ]]; then
 					break
 				fi
@@ -8553,7 +8553,7 @@ function SBSrunVRVideoPlayer {
 			getGamePidFromFile
 			"$PKILL" -9 "$GAMEWINPID"
 		else
-			if [[ -z "$VRVIDEOPLAYERARGS" ];	then
+			if [[ -z "$VRVIDEOPLAYERARGS" ]]; 	then
 				writelog "SKIP" "${FUNCNAME[0]} - ERROR - no VRVIDEOPLAYERARGS '$VRVIDEOPLAYERARGS'"
 			fi
 
@@ -8647,7 +8647,7 @@ function SBSstopVRVideoPlayer {
 
 		MAXWAIT=20
 		COUNTER=0
-		while [[ -z "$GAMEWINPID" ]; do
+		while [[ -z "$GAMEWINPID" ]]; do
 			if [[ -f "$CLOSETMP" ]]; then
 				writelog "WAIT" "${FUNCNAME[0]} - ${PROGNAME,,} is just closing - leaving loop"
 				break
@@ -8705,7 +8705,7 @@ function waitForGameWindowName {
 		COUNTER=0
 		writelog "INFO" "${FUNCNAME[0]} - Waiting for parallel process to find the Game Window"
 
-		while [[ -f "$PIDLOCK" ]; do
+		while [[ -f "$PIDLOCK" ]]; do
 			if [[ -f "$CLOSETMP" ]] || [[ "$COUNTER" -ge "$MAXWAIT" ]]; then
 				break
 			fi
@@ -8825,7 +8825,7 @@ function startSBSVR {
 
 	writelog "INFO" "${FUNCNAME[0]} - Waiting for parallel process to detect VR HMD presence"
 
-	while [[ -f "$VRINITLOCK" ]; do
+	while [[ -f "$VRINITLOCK" ]]; do
 		if [[ -f "$CLOSETMP" ]] || [[ "$COUNTER" -ge "$MAXWAIT" ]]; then
 			break
 		fi
@@ -9609,7 +9609,7 @@ function GameShaderDialog {
 		notiShow "$(strFix "$NOTY_MISSDIR" "$SHADDESTDIR")"
 	fi
 
-	if [[ -n "$2" ];	then "$2";	fi
+	if [[ -n "$2" ]]; 	then "$2";	fi
 }
 
 function getArch {
@@ -10503,7 +10503,7 @@ function useSpecialK {
 	fi
 
 	if [[ "$USESPECIALK" -eq 1 ]]; then
-		if [[ "$AUTOSPEK" -eq 1 ]] && { [[ "$SPEKVERS" == "stable" ]] || [[ "$SPEKVERS" == "nightly" ];}; then
+		if [[ "$AUTOSPEK" -eq 1 ]] && { [[ "$SPEKVERS" == "stable" ]] || [[ "$SPEKVERS" == "nightly" ]]; }; then
 			writelog "INFO" "${FUNCNAME[0]} - Updating $SPEK in the gamedir because AUTOSPEK is enabled"
 		fi
 
@@ -11131,7 +11131,7 @@ function updateConfigEntry {
 				# sed needs escaped string because otherwise it'll expand escape sequences in strings with backslashes
 				# i.e. config values with Windows paths, '\home\test' will have '\t' expanded as a tab character
 				# We have to use the regular one for echo though.
-				if { [[ "${!CFGCAT}" != "$CFGVALUE" ]] && [[ "${!CFGCAT}" != "${CFGVALUE//$STLCFGDIR/STLCFGDIR}" ];} || [[ -f "$FUPDATE" ]]; then
+				if { [[ "${!CFGCAT}" != "$CFGVALUE" ]] && [[ "${!CFGCAT}" != "${CFGVALUE//$STLCFGDIR/STLCFGDIR}" ]]; } || [[ -f "$FUPDATE" ]]; then
 					CFGVALUE="${CFGVALUE//$STLCFGDIR/STLCFGDIR}"
 					if [[ "$(grep -c "#${CFGCAT}=" "$CFGFILE")" -eq 1 ]]; then
 						writelog "INFO" "${FUNCNAME[0]} - Option '$CFGCAT' commented out in config '${CFGFILE##*/}' - activating it with the new value '$CFGVALUE'"
@@ -13689,7 +13689,7 @@ function injectIGCS {
 function postIGCS {
 	COUNTER=0
 
-	while [[ ! -f "$IGCSINITLOCK" ]; do
+	while [[ ! -f "$IGCSINITLOCK" ]]; do
 		writelog "INFO" "${FUNCNAME[0]} - Waiting for $IGCSINITLOCK to appear"
 		if [[ -f "$CLOSETMP" ]] || [[ "$COUNTER" -ge "$IGCSWAIT" ]]; then
 			break
@@ -13704,7 +13704,7 @@ function postIGCS {
 	writelog "INFO" "${FUNCNAME[0]} - Waiting (max $IGCSWAITLEFT more seconds) for $IGCS to initialize"
 	COUNTER=0
 
-	while [[ -f "$IGCSINITLOCK" ]; do
+	while [[ -f "$IGCSINITLOCK" ]]; do
 		if [[ -f "$CLOSETMP" ]] || [[ "$COUNTER" -ge "$IGCSWAITLEFT" ]]; then
 			break
 		fi
@@ -14000,7 +14000,7 @@ function delayGameForCustomLaunch {
 		}
 
 		function waitforCustomPid {
-				while [[ -z "$(CUCOPID)" ]; do
+				while [[ -z "$(CUCOPID)" ]]; do
 					if [[ "$COUNTER" -ge "$MAXTRY" ]]; then
 						writelog "SKIP" "${FUNCNAME[0]} - Giving up waiting for custom program pid"
 						break
@@ -18279,7 +18279,7 @@ function startDepressurizer {
 
 	DPRSEXE="$(find "${DPRSDLDIR}" -name "${DPRS}-v*.exe" | sort -V | tail -n1)"
 
-	if [[ ! -f "$DPRSEXE" ]] || { [[ "$(getArch "$DPRSEXE")" -ne "32" ]] && [[ "$(getArch "$DPRSEXE")" -ne "64" ];}; then
+	if [[ ! -f "$DPRSEXE" ]] || { [[ "$(getArch "$DPRSEXE")" -ne "32" ]] && [[ "$(getArch "$DPRSEXE")" -ne "64" ]]; }; then
 		dlLatestDprs
 		DPRSEXE="$(find "${DPRSDLDIR}" -name "${DPRS}-v*.exe" | sort -V | tail -n1)"
 	fi
@@ -19029,7 +19029,7 @@ function setMangoHudCfg {
 }
 
 function autoBumpGE {
-	if { [[ "$AUTOBUMPGE" -eq 1 ]] && grep -q "^GE" <<< "$USEPROTON" && [[ "$ISGAME" -eq 2 ];} || [[ -n "$1" ]]; then
+	if { [[ "$AUTOBUMPGE" -eq 1 ]] && grep -q "^GE" <<< "$USEPROTON" && [[ "$ISGAME" -eq 2 ]]; } || [[ -n "$1" ]]; then
 		writelog "INFO" "${FUNCNAME[0]} - Current Proton version is $USEPROTON"
 		dlLatestGE "lge" "X"
 		getAvailableProtonVersions "up" X
@@ -20368,7 +20368,7 @@ function startGame {
 	createSymLink "${FUNCNAME[0]}" "$GRUNLOG" "${STLGLLOGDIRTI}/${GN}.log"
 
 # this is broken - maybe later:
-#	if [[ "$ISGAME" -eq 2 ]] && [[ "$USEWINE" -eq 0 ]] && { grep -qi "GE-" <<< "$USEPROTON" || grep -qi "\-TKG" <<< "$USEPROTON" || [[ "$ISORIGIN" -eq 1 ];}; then
+#	if [[ "$ISGAME" -eq 2 ]] && [[ "$USEWINE" -eq 0 ]] && { grep -qi "GE-" <<< "$USEPROTON" || grep -qi "\-TKG" <<< "$USEPROTON" || [[ "$ISORIGIN" -eq 1 ]]; }; then
 	if [[ "$ISGAME" -eq 2 ]] && [[ "$USEWINE" -eq 0 ]]; then
 		if [[ "$ISORIGIN" -eq 1 ]]; then
 			writelog "INFO" "${FUNCNAME[0]} - Waiting for $L2EA process to finish"
@@ -20642,7 +20642,7 @@ function initPlay {
 		HAVTI="$1"
 	fi
 
-	if [[ -n "$HAVTI" ]] || [[ -n "$HAVID" ]] && { [[ -n "$2" ]] && [[ -f "$2" ];}; then
+	if [[ -n "$HAVTI" ]] || [[ -n "$HAVID" ]] && { [[ -n "$2" ]] && [[ -f "$2" ]]; }; then
 		HAVPA="$2"
 	fi
 
@@ -20725,12 +20725,12 @@ function initPlay {
 	setHaveConfs
 	loadHaveConfs
 
-	if [[ -n "$HAVID" ]] &&  [[ -z "$GAMEID" ]] && { [[ -z "$AID" ]] || [[ "$AID" == "$PLACEHOLDERAID" ];}; then
+	if [[ -n "$HAVID" ]] &&  [[ -z "$GAMEID" ]] && { [[ -z "$AID" ]] || [[ "$AID" == "$PLACEHOLDERAID" ]]; }; then
 		writelog "INFO" "${FUNCNAME[0]} - Setting AID to '$HAVID'" "E"
 		export AID="$HAVID"
 	fi
 
-	if [[ -n "$GAMEID" ]] && { [[ -z "$AID" ]] || [[ "$AID" == "$PLACEHOLDERAID" ];}; then
+	if [[ -n "$GAMEID" ]] && { [[ -z "$AID" ]] || [[ "$AID" == "$PLACEHOLDERAID" ]]; }; then
 		writelog "INFO" "${FUNCNAME[0]} - Setting AID to '$GAMEID'" "E"
 		export AID="$GAMEID"
 	fi
@@ -20914,7 +20914,7 @@ function standaloneGameIcon {
 		else
 			PEVDSTI="$STLGPEVKD/$PERES/id/$AID"
 
-			if [[ -x "$(command -v "$PERES")" ]] && { [[ ! -d "$PEVDSTI" ]] || [[ "$(find "$PEVDSTI" -type f | wc -l)" -eq 0 ];}; then
+			if [[ -x "$(command -v "$PERES")" ]] && { [[ ! -d "$PEVDSTI" ]] || [[ "$(find "$PEVDSTI" -type f | wc -l)" -eq 0 ]]; }; then
 				mkProjDir "$PEVDSTI"
 				writelog "INFO" "${FUNCNAME[0]} - extracting data from '${HAVEPA##*/}' using '$PERES' to '$PEVDSTI'"
 				cd "$PEVDSTI" >/dev/null || return
@@ -21399,7 +21399,7 @@ function createWineList {
 function setWineVars {
 	WINEVERSION="${WINEVERSION%%.tar*}"
 
-	if [[ "$USEWINE" -eq 1 ]] && [[ "$ISGAME" -eq 2 ]] && { [[ -z "$RUNWINEVERSION" ]] || [[ "$RUNWINEVERSION" != "$WINEVERSION" ];}; then
+	if [[ "$USEWINE" -eq 1 ]] && [[ "$ISGAME" -eq 2 ]] && { [[ -z "$RUNWINEVERSION" ]] || [[ "$RUNWINEVERSION" != "$WINEVERSION" ]]; }; then
 		writelog "INFO" "${FUNCNAME[0]} - USEWINE is enabled. Creating some wine related variables"
 
 		if [[ -n "$RUNWINEVERSION" ]] && [[ "$WINEVERSION" =~ ${DUMMYBIN}$ ]]; then
@@ -23237,7 +23237,7 @@ function commandline {
 			elif [[ "$2" == "allgamedata" ]]; then
 				getDataForAllGamesinSharedConfig
 			elif [[ "$2" == "shader" ]] || [[ "$2" == "shaders" ]]; then
-				if [[ -n "$3" ]] && { [[ "$3" == "repos" ]] || [[ "$3" == "list" ]; }; then
+				if [[ -n "$3" ]] && { [[ "$3" == "repos" ]] || [[ "$3" == "list" ]]; }; then
 					dlShaders "$3"
 				else
 					StatusWindow "$GUI_DLSHADER" "dlShaders $3"  "DownloadShadersStatus"
@@ -23410,7 +23410,7 @@ function commandline {
 			howto
 		fi
 	elif [[ "$1" == "waitrequester" ]] || [[ "$1" == "wr" ]]; then
-		if [[ -n "$2" ]] && { [[ "$2" == "e" ]] || [[ "$2" == "s" ]] || [[ "$2" == "u" ];}; then
+		if [[ -n "$2" ]] && { [[ "$2" == "e" ]] || [[ "$2" == "s" ]] || [[ "$2" == "u" ]]; }; then
 			if [[ "$2" == "e" ]]; then
 				writelog "INFO" "${FUNCNAME[0]} - enabling the Wait Requester for the next launched game"
 				touch "$EWRF"
@@ -25325,7 +25325,7 @@ function closeSTL {
 	rm "$STLSHM/lola-*.txt" 2>/dev/null
 
 	# only useful for win games or games started outside steam:
-	if [[ "$STLPLAY" -eq 1 ]] || { [[ "$ISGAME" -eq 2 ]] || [[ "$ISGAME" -eq 3 ]] && [[ "$USEWINE" -eq 0 ];}; then
+	if [[ "$STLPLAY" -eq 1 ]] || { [[ "$ISGAME" -eq 2 ]] || [[ "$ISGAME" -eq 3 ]] && [[ "$USEWINE" -eq 0 ]]; }; then
 		writeLastRun
 		storeMetaData "$AID" "$GN" "$GPFX" "$EFD"
 	fi
@@ -25802,11 +25802,11 @@ function reCreateCompatdata {
 
 						runEvalsc "${EUNID}" &
 
-						while [[ ! -f "$EVALISRUN" ];do
+						while [[ ! -f "$EVALISRUN" ]]; do
 							sleep 0.1
 						done
 
-						while [[ -f "$EVALISRUN" ];do
+						while [[ -f "$EVALISRUN" ]]; do
 							getCurStep "${EUNID}"
 							sleep 1
 						done
@@ -25954,7 +25954,7 @@ function checkFirstTimeRun {
 		ISCRILOG="$2"
 		EVALVDF="$SCCILECO/$1"
 		writelog "INFO" "${FUNCNAME[0]} - Waiting for '$EVALVDF' to appear" "X" "$ISCRILOG"
-		while [[ ! -f "$EVALVDF" ]; do
+		while [[ ! -f "$EVALVDF" ]]; do
 			sleep 0.1
 		done
 		cp "$EVALVDF" "$EVMETAID"
@@ -26066,7 +26066,7 @@ function checkFirstTimeRun {
 							waitForEvaluatorscript "$EVSC" "$ISCRILOG" &
 							writelog "INFO" "${FUNCNAME[0]} - '$EVALSC' START - '$EARLYPROT run ${RUNISCCMD[*]}'" "X" "$ISCRILOG"
 							"$EARLYPROT" run "${RUNISCCMD[@]}"
-							while [[ ! -f "$SRCEVSC" ]; do
+							while [[ ! -f "$SRCEVSC" ]]; do
 								sleep 0.1
 							done
 						fi
@@ -26359,7 +26359,7 @@ function fetchAndExtractDependency {
 	function removeFileExtension {
 		local FNAME="$1"
 		local LASTFNAME=""
-		while ! [[ "$FNAME" = "$LASTFNAME" ]; do
+		while ! [[ "$FNAME" = "$LASTFNAME" ]]; do
 			LASTFNAME="$FNAME"
 			FNAME="${FNAME%.*}"
 		done
