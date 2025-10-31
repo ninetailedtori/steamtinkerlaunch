@@ -52,6 +52,7 @@ DESC_PROTON_NO_D3D11="Wyłącz d3d11.dll dla gier D3D11 które cofną się i bę
 DESC_PROTON_NO_ESYNC="Nie używaj międzyprocesowych prymitywów synchronizacji bazujących na eventfd"
 DESC_PROTON_NO_FSYNC="Nie używaj prymitywów synchronizacji bazujących na futex"
 DESC_ENABLE_WINESYNC="Użyj winesync zamiast esync/fsync. Moduł kernela winesync i kompatybilny Proton musi być używany."
+DESC_PROTON_ENABLE_WAYLAND="Enable Proton's native Wayland support (Proton-GE/Proton-CachyOS). Warning: this option is still experimental and was patched out by Valve. It will disable a few features such as Steam Overlay, and many games have been reported broken w.r.t. native Wayland in their graphical implementation."
 DESC_PROTON_USE_WINED3D="Używaj bazującego na OpenGL WineD3D zamiast bazującego na Vulkanie DXVK dla D3D11, D3D10 i D3D9"
 DESC_REGEDIT="Pozwalaj na zmiany w rejestrze dla tej gry"
 DESC_RESHADESRCDIR="Folder w którym komponent ReShade są przechowywane i wczytywane"

@@ -52,6 +52,7 @@ DESC_PROTON_NO_D3D11="禁用 d3d11.dll，D3D11 游戏可以返回到 D3D9 并更
 DESC_PROTON_NO_ESYNC="不要使用基于 eventfd 的进程内 synchronization primitives"
 DESC_PROTON_NO_FSYNC="不要使用基于 Futex 的进程内 synchronization primitives"
 DESC_ENABLE_WINESYNC="使用 Winesync 而不是 esync/fsync。需要使用 winesync 内核模块和一个兼容的 Proton。"
+DESC_PROTON_ENABLE_WAYLAND="Enable Proton's native Wayland support (Proton-GE/Proton-CachyOS). Warning: this option is still experimental and was patched out by Valve. It will disable a few features such as Steam Overlay, and many games have been reported broken w.r.t. native Wayland in their graphical implementation."
 DESC_PROTON_USE_WINED3D="对 D3D11、D3D10 和 D3D9 使用基于 OpenGL 的 WineD3D 而不是基于 Vulkan 的 DXVK"
 DESC_REGEDIT="允许此游戏的注册表更改"
 DESC_RESHADESRCDIR="存储和加载 ReShade 组件的目录"
