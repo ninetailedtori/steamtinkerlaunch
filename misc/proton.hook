@@ -1,0 +1,17 @@
+[Trigger]
+Operation=Install
+Operation=Upgrade
+Type=Package
+Target=proton
+Target=proton-cachyos
+Target=proton-slr
+Target=proton-cachyos-slr
+Target=proton-ge
+Target=proton-ge-custom-bin
+
+[Action]
+Description=Remove launch-time fetched steamtinkerlaunch Proton versions to force list recompilation.
+Depends=coreutils
+When=PostTransaction
+NeedsTargets
+Exec=/usr/bin/rm -f /dev/shm/steamtinkerlaunch/ProtonCSV.txt
