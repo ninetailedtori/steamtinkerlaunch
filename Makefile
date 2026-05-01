@@ -1,5 +1,5 @@
 ifeq ($(PREFIX),)
-    PREFIX := /usr
+	PREFIX := /usr
 endif
 
 .PHONY: build install
@@ -25,4 +25,3 @@ uninstall:
 	rm -rf "${PREFIX}/share/steamtinkerlaunch"
 
 	rm -f "${PREFIX}/bin/steamtinkerlaunch"
-
