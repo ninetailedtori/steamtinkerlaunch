@@ -7,24 +7,22 @@ endif
 build:
 
 install:
-	sed "s:^PREFIX=\"/usr\":PREFIX=\"$(PREFIX)\":" -i steamtinkerlaunch
-	install -Dm755 steamtinkerlaunch -t "$(PREFIX)/bin"
+	sed "s:^PREFIX=\"/usr\":PREFIX=\"$(PREFIX)\":"  -i steamtinkerlaunch
+	install -Dm755 steamtinkerlaunch                -t "$(PREFIX)/bin"
 
-	install -d "$(PREFIX)/share/steamtinkerlaunch"
-	cp -r collections eval guicfgs lang misc "$(PREFIX)/share/steamtinkerlaunch"
+	install -d                                         "$(PREFIX)/share/steamtinkerlaunch"
+	cp -r collections eval guicfgs lang misc           "$(PREFIX)/share/steamtinkerlaunch"
 
-	install -Dm644 README.md -t "$(PREFIX)/share/doc/steamtinkerlaunch"
+	install -Dm644 README.md                        -t "$(PREFIX)/share/doc/steamtinkerlaunch"
 	install -Dm644 "misc/steamtinkerlaunch.desktop" -t "$(PREFIX)/share/applications"
-	install -Dm644 "misc/steamtinkerlaunch.svg" -t "$(PREFIX)/share/icons/hicolor/scalable/apps"
+	install -Dm644 "misc/steamtinkerlaunch.svg"     -t "$(PREFIX)/share/icons/hicolor/scalable/apps"
 	ifeq (, $(shell which pacman))
-		install -Dm644 "misc/proton.hook" -t "/etc/pacman.d/hooks"
+		install -Dm644 "misc/proton.hook"           -t "/usr/share/libalpm/hooks"
 	endif
 
 uninstall:
-	rm -f "${PREFIX}/share/icons/hicolor/scalable/apps/steamtinkerlaunch.svg"
-	rm -f "${PREFIX}/share/applications/steamtinkerlaunch.desktop"
+	rm -f  "${PREFIX}/share/icons/hicolor/scalable/apps/steamtinkerlaunch.svg"
+	rm -f  "${PREFIX}/share/applications/steamtinkerlaunch.desktop"
 	rm -rf "${PREFIX}/share/doc/steamtinkerlaunch"
-
 	rm -rf "${PREFIX}/share/steamtinkerlaunch"
-
-	rm -f "${PREFIX}/bin/steamtinkerlaunch"
+	rm -f  "${PREFIX}/bin/steamtinkerlaunch"
