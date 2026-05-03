@@ -16,6 +16,9 @@ install:
 	install -Dm644 README.md -t "$(PREFIX)/share/doc/steamtinkerlaunch"
 	install -Dm644 "misc/steamtinkerlaunch.desktop" -t "$(PREFIX)/share/applications"
 	install -Dm644 "misc/steamtinkerlaunch.svg" -t "$(PREFIX)/share/icons/hicolor/scalable/apps"
+	ifeq (, $(shell which pacman))
+		install -Dm644 "misc/proton.hook" -t "/etc/pacman.d/hooks"
+	endif
 
 uninstall:
 	rm -f "${PREFIX}/share/icons/hicolor/scalable/apps/steamtinkerlaunch.svg"
